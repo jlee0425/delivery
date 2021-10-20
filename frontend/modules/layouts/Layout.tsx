@@ -20,7 +20,7 @@ const Layout = ({ children }: Props) => {
 					</Button>
 				</Toolbar>
 			</AppBar>
-			<Container>{children}</Container>
+			<Container sx={{ margin: '50px auto' }}>{children}</Container>
 		</>
 	);
 };
