@@ -1,8 +1,8 @@
+import { Restaurant } from '@modules/restaurants/type';
 import { Alert, Grid, Snackbar, Typography } from '@mui/material';
-import { request } from 'graphql-request';
+import { fetcher } from 'lib/fetcher';
 import React, { useCallback, useState } from 'react';
 import useSWR from 'swr';
-import { Restaurant } from '@modules/restaurants/type';
 import RestaurantCard from './RestaurantCard';
 
 interface Props {
@@ -10,9 +10,7 @@ interface Props {
 }
 
 const RestaurantList = ({ searchString = '' }: Props) => {
-	const fetcher = async (query: string) =>
-		await request(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, query);
-	const { data, isValidating, error } = useSWR(QUERY, fetcher);
+	const { data, isValidating, error } = useSWR(GET_RESTAURANT_LISTS, fetcher);
 	const [showToast, toggleToast] = useState(error ?? false);
 	const closeToast = useCallback(() => {
 		toggleToast(!showToast);
@@ -30,10 +28,11 @@ const RestaurantList = ({ searchString = '' }: Props) => {
 			</Alert>
 		</Snackbar>
 	) : (
-		<Grid container spacing={2}>
-			{filteredList.map((item: Restaurant) => (
+		<Grid container spacing={6}>
+			{filteredList.map((item: Omit<Restaurant, 'dishes'>) => (
 				<Grid key={item.id} item md={4} sm={6} xs={12}>
 					<RestaurantCard
+						id={item.id}
 						name={item.name}
 						description={item.description}
 						image={item.image}
@@ -46,7 +45,7 @@ const RestaurantList = ({ searchString = '' }: Props) => {
 
 export default RestaurantList;
 
-const QUERY = `
+const GET_RESTAURANT_LISTS = `
 	{
 		restaurants {
 			id

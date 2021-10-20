@@ -19,7 +19,9 @@ const Home: NextPage = () => {
 				variant='standard'
 				value={searchKeyword}
 				onChange={handleSearchInput}
-				sx={{ margin: '20px 0' }}
+				size='medium'
+				margin='normal'
+				sx={{ marginBottom: '50px' }}
 			/>
 			<RestaurantList searchString={searchKeyword} />
 		</>

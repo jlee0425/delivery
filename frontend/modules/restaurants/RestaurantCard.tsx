@@ -13,14 +13,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Restaurant } from '@modules/restaurants/type';
 import theme from '@styles/theme';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
 const RestaurantCard = ({
+	id,
 	name,
 	description,
 	image,
-}: Omit<Restaurant, 'id'>) => {
+}: Omit<Restaurant, 'dishes'>) => {
+	const router = useRouter();
 	return (
-		<Card sx={{ maxWidth: 345, height: 460 }} elevation={4}>
+		<Card
+			sx={{ maxWidth: 345, height: 460 }}
+			elevation={4}
+			onClick={() => router.push(`/restaurants/${id}`)}
+		>
 			<CardHeader
 				avatar={
 					<Avatar sx={{ bgcolor: 'red[500]' }} aria-label='restaurant'>
