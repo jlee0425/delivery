@@ -10,7 +10,9 @@ import {
 } from '@mui/material';
 import React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Restaurant } from '../../types/restaurant';
+import { Restaurant } from '@modules/restaurants/type';
+import theme from '@styles/theme';
+import styled from 'styled-components';
 
 const RestaurantCard = ({
 	name,
@@ -18,7 +20,7 @@ const RestaurantCard = ({
 	image,
 }: Omit<Restaurant, 'id'>) => {
 	return (
-		<Card sx={{ maxWidth: 345 }}>
+		<Card sx={{ maxWidth: 345, height: 460 }} elevation={4}>
 			<CardHeader
 				avatar={
 					<Avatar sx={{ bgcolor: 'red[500]' }} aria-label='restaurant'>
@@ -32,12 +34,12 @@ const RestaurantCard = ({
 				height='194'
 				src={`${process.env.NEXT_PUBLIC_API_URL}${image[0].url}`}
 			/>
-			<CardContent>
-				<Typography variant='body2' color='text.secondary'>
+			<CardContent sx={{ height: 138 }}>
+				<DescWithScroll variant='body2' color='text.secondary'>
 					{description}
-				</Typography>
+				</DescWithScroll>
 			</CardContent>
-			<CardActions disableSpacing>
+			<CardActions>
 				<IconButton>
 					<FavoriteIcon />
 				</IconButton>
@@ -47,3 +49,7 @@ const RestaurantCard = ({
 };
 
 export default RestaurantCard;
+
+const DescWithScroll = styled(Typography)`
+	${theme.OverflowScroll}
+`;

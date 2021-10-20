@@ -1,6 +1,6 @@
-import { AppBar, Button, Toolbar, Typography } from '@mui/material';
-import React, { ReactNode } from 'react';
+import { AppBar, Button, Container, Toolbar, Typography } from '@mui/material';
 import Link from 'next/link';
+import React, { ReactNode } from 'react';
 interface Props {
 	children: ReactNode;
 }
@@ -20,7 +20,7 @@ const Layout = ({ children }: Props) => {
 					</Button>
 				</Toolbar>
 			</AppBar>
-			<div>{children}</div>
+			<Container>{children}</Container>
 		</>
 	);
 };
