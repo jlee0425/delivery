@@ -16,7 +16,7 @@ const Layout = ({ children }: Props) => {
 						<Link href='/signin'>Sign In</Link>
 					</Button>
 					<Button color='inherit'>
-						<Link href='/signup'>Sign Up</Link>
+						<Link href='/signup'>Register</Link>
 					</Button>
 				</Toolbar>
 			</AppBar>
