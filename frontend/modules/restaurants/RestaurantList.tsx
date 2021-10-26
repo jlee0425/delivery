@@ -1,5 +1,6 @@
 import { Restaurant } from '@modules/restaurants/type';
 import { Alert, Grid, Snackbar, Typography } from '@mui/material';
+import { gql } from 'graphql-request';
 import { fetcher } from 'lib/fetcher';
 import React, { useCallback, useState } from 'react';
 import useSWR from 'swr';
@@ -45,7 +46,7 @@ const RestaurantList = ({ searchString = '' }: Props) => {
 
 export default RestaurantList;
 
-const GET_RESTAURANT_LISTS = `
+const GET_RESTAURANT_LISTS = gql`
 	{
 		restaurants {
 			id
